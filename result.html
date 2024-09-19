@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .img-container {
+            margin-bottom: 30px;
+        }
+        .img-container img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: bold;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>SALES PREDICTION</h1>
+            
+            <!-- Month Selector Form -->
+            <form action="{{ url_for('uploader') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Upload Sales Data File:</label>
+                    <input type="file" id="file" name="file" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="months">Select Particular month:</label>
+                    <select id="months" name="months" class="form-control" required>
+                        <option value="" disabled selected>Select number of months</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Visualization</button>
+            </form>
+            
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-info" role="alert">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <!-- Total Sales Visualization for Specific Period -->
+    <div class="row">
+        <div class="col-md-12 img-container">
+            {% if total_sales_img %}
+            <div class="card">
+                <div class="card-header">Total Sales over{{ months }} Months</div>
+                <div class="card-body text-center">
+                    <img src="{{ total_sales_img }}" alt="Total Sales Visualization">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Most Sold Items Visualization -->
+    <div class="row">
+        <div class="col-md-12 img-container">
+            {% if most_sold_img %}
+            <div class="card">
+                <div class="card-header">Most Sold Items</div>
+                <div class="card-body text-center">
+                    <img src="{{ most_sold_img }}" alt="Most Sold Items Visualization">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Least Sold Items Visualization -->
+    <div class="row">
+        <div class="col-md-12 img-container">
+            {% if least_sold_img %}
+            <div class="card">
+                <div class="card-header">Least Sold Items</div>
+                <div class="card-body text-center">
+                    <img src="{{ least_sold_img }}" alt="Least Sold Items Visualization">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Button to download the visualization images -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {% if total_sales_img or most_sold_img or least_sold_img %}
+            <a href="{{ url_for('download', filename='total_sales.png') }}" class="btn btn-success">Download Total Sales Visualization</a>
+            <a href="{{ url_for('download', filename='most_sold_items.png') }}" class="btn btn-success">Download Most Sold Items Visualization</a>
+            <a href="{{ url_for('download', filename='least_sold_items.png') }}" class="btn btn-success">Download Least Sold Items Visualization</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

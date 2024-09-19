@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<center>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALES PREDICTION</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SALES PREDICTION</h1>
+        <form method="POST" action="{{ url_for('uploader') }}" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xlsx, .xls">
+            <input type="submit" value="upload and Predict">
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</center>
+</body>
+</html>

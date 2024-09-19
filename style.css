@@ -1,0 +1,71 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url('https://media.licdn.com/dms/image/D4D12AQHwDv1woRU78g/article-cover_image-shrink_600_2000/0/1711949403115?e=2147483647&v=beta&t=V3dJsb-XaHURJ52Y_sQm7nIBgOLyxz4YFdAkM5vt15o'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 30px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #76c579;
+    color: white; 
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #549157; 
+}
+
+.messages {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.messages li {
+    background-color: #f8afaf;
+    color: #2b2727;
+    padding: 10px;
+    border: 1px solid #1f0103;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
